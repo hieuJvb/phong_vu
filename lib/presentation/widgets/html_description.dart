@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:phong_vu/presentation/widgets/video_player_widget.dart';
+import 'package:phong_vu/presentation/widgets/web_view.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class HtmlDescriptionView extends StatefulWidget {
   final String description;
@@ -39,6 +40,10 @@ class _HtmlDescriptionViewState extends State<HtmlDescriptionView> {
             );
           }
         }
+        if(element.localName == "iframe"){
+          final videoUrl = element.attributes['src'] ??'';
+          return VideoPlayerWidget(videoUrl: videoUrl);
+        }
         return null;
       },
     );
@@ -59,24 +64,4 @@ class _HtmlDescriptionViewState extends State<HtmlDescriptionView> {
   }
 }
 
-class InAppWebViewPage extends StatelessWidget {
-  final String url;
 
-  const InAppWebViewPage({super.key, required this.url});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Web View"),
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-      ),
-      body: InAppWebView(
-        initialUrlRequest: URLRequest(url: WebUri(url)),
-      ),
-    );
-  }
-}

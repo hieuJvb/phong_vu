@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:phong_vu/common/font.dart';
 import 'package:phong_vu/presentation/bloc/product_detail_cubit.dart';
 import 'package:phong_vu/presentation/bloc/product_detail_state.dart';
@@ -9,6 +7,7 @@ import 'package:phong_vu/presentation/widgets/attribute_group.dart';
 import 'package:phong_vu/presentation/widgets/carousel_slider.dart';
 import 'package:phong_vu/presentation/widgets/custom_wrap.dart';
 import 'package:phong_vu/presentation/widgets/html_description.dart';
+import 'package:phong_vu/presentation/widgets/html_short_d.dart';
 import 'package:phong_vu/presentation/widgets/price.dart';
 import 'package:phong_vu/presentation/widgets/section_title.dart';
 
@@ -135,26 +134,9 @@ class DetailProductScreen extends StatelessWidget {
                           style: AppFonts.kFontTitle,
                         ),
                       ),
-                      //
-                      //   SingleChildScrollView(
-                      //   child: HtmlWidget(
-                      //   state.product.productDetail.description,
-                      //     customWidgetBuilder: (element) {
-                      //       if (element.localName == 'img') {
-                      //         final imageUrl = element.attributes['src'] ?? '';
-                      //         return CachedNetworkImage(
-                      //           imageUrl: imageUrl,
-                      //           placeholder: (context, url) => const CircularProgressIndicator(),
-                      //           errorWidget: (context, url, error) => const Icon(Icons.error),
-                      //         );
-                      //       }
-                      //       if (element.localName == 'iframe' || element.localName == 'webview') {
-                      //         return const Text('WebView không được hỗ trợ.');
-                      //       }
-                      //       return null;
-                      //     },
-                      //   ),
-                      // ),
+
+                      // HtmlShortD(shortDescription: state.product.productDetail.shortDescription)
+
                       HtmlDescriptionView(
                           description: state.product.productDetail.description)
                     ],
