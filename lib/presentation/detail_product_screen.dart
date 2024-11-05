@@ -6,13 +6,19 @@ import 'package:phong_vu/presentation/bloc/product_detail_state.dart';
 import 'package:phong_vu/presentation/widgets/attribute_group.dart';
 import 'package:phong_vu/presentation/widgets/carousel_slider.dart';
 import 'package:phong_vu/presentation/widgets/custom_wrap.dart';
-import 'package:phong_vu/presentation/widgets/html_description.dart';
 import 'package:phong_vu/presentation/widgets/html_short_d.dart';
 import 'package:phong_vu/presentation/widgets/price.dart';
 import 'package:phong_vu/presentation/widgets/section_title.dart';
 
-class DetailProductScreen extends StatelessWidget {
+class DetailProductScreen extends StatefulWidget {
   const DetailProductScreen({super.key});
+
+  @override
+  _DetailProductScreenState createState() => _DetailProductScreenState();
+}
+
+class _DetailProductScreenState extends State<DetailProductScreen> {
+  bool _showFullDescription = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +49,7 @@ class DetailProductScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
                       const CarouselSlider(),
 
                       SectionTitle(title: "MÀU SẮC: ${state.selectedColor}"),
@@ -125,7 +132,6 @@ class DetailProductScreen extends StatelessWidget {
                             state.product.productDetail.attributeGroups,
                       ),
 
-                      //Description
                       Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: media.height * 0.01),
@@ -135,10 +141,35 @@ class DetailProductScreen extends StatelessWidget {
                         ),
                       ),
 
-                      // HtmlShortD(shortDescription: state.product.productDetail.shortDescription)
+                      // Mô tả
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: media.height * 0.01),
+                        child: HtmlShortD(
+                          shortDescription: _showFullDescription
+                              ? state.product.productDetail
+                                  .description // Hiển thị mô tả dài khi _showFullDescription là true
+                              : state.product.productDetail
+                                  .shortDescription, // Hiển thị mô tả ngắn khi _showFullDescription là false
+                        ),
+                      ),
 
-                      HtmlDescriptionView(
-                          description: state.product.productDetail.description)
+                      // Nút để xem thêm
+                      Center(
+                        child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              _showFullDescription =
+                                  !_showFullDescription; // Cập nhật trạng thái khi nhấn nút
+                            });
+                          },
+                          child: Text(
+                            _showFullDescription ? "Thu gọn" : "Xem thêm",
+                            // Thay đổi nhãn nút
+                            style: TextStyle(color: Colors.grey, fontSize: 18),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

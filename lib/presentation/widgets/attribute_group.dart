@@ -65,7 +65,10 @@ class _ProductAttributesListState extends State<ProductAttributesList> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(_isShowAll ? 'Thu gọn' : 'Xem thêm nội dung', style: const  TextStyle(color:  Colors.grey, fontSize: 18),),
+            Text(
+              _isShowAll ? 'Thu gọn' : 'Xem thêm nội dung',
+              style: const TextStyle(color: Colors.grey, fontSize: 18),
+            ),
             IconButton(
               icon: _isShowAll
                   ? const Icon(Icons.expand_less)

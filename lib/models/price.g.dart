@@ -17,15 +17,3 @@ Price _$PriceFromJson(Map<String, dynamic> json) => Price(
       maxLatestPrice: json['maxLatestPrice'] as String,
       bestComboDiscount: json['bestComboDiscount'] as String,
     );
-
-Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
-      'supplierRetailPrice': instance.supplierRetailPrice,
-      'terminalPrice': instance.terminalPrice,
-      'latestPrice': instance.latestPrice,
-      'discountAmount': instance.discountAmount,
-      'discountPercent': instance.discountPercent,
-      'sellPrice': instance.sellPrice,
-      'minLatestPrice': instance.minLatestPrice,
-      'maxLatestPrice': instance.maxLatestPrice,
-      'bestComboDiscount': instance.bestComboDiscount,
-    };

@@ -13,9 +13,6 @@ class CarouselSlider extends StatefulWidget {
 }
 
 class _CarouselSliderState extends State<CarouselSlider> {
-  // int _current = 0;
-  // final carousel_slider.CarouselSliderController _controller = carousel_slider.CarouselSliderController();
-
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.sizeOf(context);
@@ -68,17 +65,12 @@ class _CarouselSliderState extends State<CarouselSlider> {
                       autoPlayAnimationDuration: const Duration(milliseconds: 200),
                       scrollPhysics: const BouncingScrollPhysics(),
 
-                      // onPageChanged: (index, reason){
-                      //   setState(() {
-                      //     _current = index;
-                      //   });
-                      // }
                     )),
 
               ],
             );
-          } else {
-            return Container();
+          } else{
+            return SizedBox.shrink();
           }
         },
       ),
